@@ -1,0 +1,19 @@
+{
+	"files.associations": {
+		"mlx.h": "c",
+		"mlx_int.h": "c",
+		"bit": "c",
+		"array": "c",
+		"string_view": "c",
+		"initializer_list": "c",
+		"utility": "c",
+		"stdio.h": "c",
+		"ostream": "c",
+		"string": "c",
+		"iosfwd": "c",
+		"main_bonus": "c",
+		"map_parsing_utils": "c",
+		"__locale": "c",
+		"ios": "c"
+	}
+}
