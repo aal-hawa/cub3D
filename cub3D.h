@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef CUB3D
+# define CUB3D
 
 # include "mlx_mac/mlx.h"
 # include <stdlib.h>

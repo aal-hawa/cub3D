@@ -14,6 +14,7 @@
 		"main_bonus": "c",
 		"map_parsing_utils": "c",
 		"__locale": "c",
-		"ios": "c"
+		"ios": "c",
+		"cub3d.h": "c"
 	}
 }

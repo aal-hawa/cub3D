@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "cub3D.h"
 
 void	after_can_get_it(t_info *info, char to_flood, char **map,
 		int last_malloc)
