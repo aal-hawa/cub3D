@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 19:07:17 by aal-hawa          #+#    #+#             */
-/*   Updated: 2024/10/20 14:21:26 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/10 15:43:01 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	chars_data_map(char c, int x, t_info *info)
 {
 	if (!(c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W' || (c == 'W'
 				&& info->is_bonus == 1)))
-		exitmassege("Invalid Input\n", info);
+		exitmassege("\n", info);
 	// if (c == 'E')
 	// {
 	// 	if (info->is_hv_ext == 1)
@@ -113,6 +113,7 @@ void	chars_data_map(char c, int x, t_info *info)
 		info->is_hv_plr = 1;
 		info->x_plr = x;
 		info->y_plr = info->y_lngth_mp - 1;
+		info->facing_plr = c;
 	}
 	// if (c == 'C')
 	// 	info->cnt_collc++;
