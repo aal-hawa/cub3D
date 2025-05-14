@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:08:25 by aal-hawa          #+#    #+#             */
-/*   Updated: 2024/10/20 14:24:44 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/14 18:23:35 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@ int	ft_strlen(const char *s)
 
 	i = 0;
 	while (s[i])
+		i++;
+	return (i);
+}
+
+int	ft_array2d_len(char **array2d)
+{
+	int	i;
+
+	i = 0;
+	while (array2d[i])
 		i++;
 	return (i);
 }
@@ -51,6 +61,26 @@ char	*ft_strdup_line(char *str, int eof)
 		return (NULL);
 	i = 0;
 	while (str[i] && str[i] != '\n')
+	{
+		dst[i] = str[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
+}
+
+char	*ft_strdup(const char *str)
+{
+	char	*dst;
+	size_t	i;
+	size_t	len;
+
+	len = ft_strlen(str);
+	dst = malloc(sizeof(char) * (len + 1));
+	if (!dst)
+		return (NULL);
+	i = 0;
+	while (str[i])
 	{
 		dst[i] = str[i];
 		i++;
@@ -101,4 +131,29 @@ void	ft_putstr_fd(char *s, int fd, int is_malloc)
 		write(fd, "\n", 1);
 	if (is_malloc == 1 || is_malloc == 2)
 		free_char(s);
+}
+int	ft_atoi(const char *str)
+{
+	long	res;
+	int		sign;
+	int		i;
+
+	sign = 1;
+	i = 0;
+	res = 0;
+	while (str[i] && (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-' )
+			sign = -1;
+		i++;
+	}
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
+	{
+		res = res * 10 + (str[i] - '0');
+		i++;
+	}
+	res *= sign;
+	return ((int)res);
 }

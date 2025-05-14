@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:16:56 by aal-hawa          #+#    #+#             */
-/*   Updated: 2024/10/20 13:55:21 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/14 18:49:33 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,20 @@ void	ft_strcpy(char *dst, const char *src)
 		dst[i] = '\0';
 	}
 }
+void	replace_spaces2one(char **test_line_map)
+{
+	int	i;
+
+	i = 0;
+	while(test_line_map[0][i])
+	{
+		if (test_line_map[0][i] == ' ')
+			test_line_map[0][i] = '1';
+		i++;
+	}
+}
+
+
 
 void	map_pars_main(int fd, t_info *info)
 {
@@ -84,8 +98,11 @@ void	map_pars_main(int fd, t_info *info)
 		test_line_map = get_next_line(fd, info);
 		if (!test_line_map)
 			break ;
-		if (info->is_hv_err != 1)
+		if (info->number_of_elemnts < 6)
+			header_parsing(&test_line_map, info);
+		else if (info->is_hv_err != 1)
 		{
+			replace_spaces2one(&test_line_map);
 			ft_strcpy(info->map[info->y_lngth_mp], test_line_map);
 			info->y_lngth_mp++;
 			if (info->y_lngth_mp > 27)

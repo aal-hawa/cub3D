@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 15:07:00 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/10 15:42:43 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/14 18:51:48 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ typedef struct s_enemes
 	int				y;
 	struct s_enemes	*next;
 }					t_enemes;
+
+typedef struct s_color_rgb
+{
+	int				r;
+	int				g;
+	int				b;
+}	t_color_rgb;
 
 typedef struct s_info
 {
@@ -60,6 +67,13 @@ typedef struct s_info
 	int				i_enemy;
 	int				ofset;
 	int				is_plus;
+	int				number_of_elemnts;
+	char			*north_path;
+	char			*south_path;
+	char			*west_path;
+	char			*east_path;
+	t_color_rgb		floor_color;
+	t_color_rgb		ceiling_color;
 	t_enemy			m[7];
 	t_enemes		*enemes;
 }					t_info;
@@ -97,5 +111,11 @@ void				move_left(t_info *info);
 void				init_info(t_info *info);
 void				is_win(int y, int x, t_info *info);
 void				is_lose(int y, int x, t_info *info);
-
+char				**ft_split(char const *s, char c);
+char				*ft_strdup(const char *str);
+int					ft_array2d_len(char **array2d);
+int					ft_atoi(const char *str);
+void				header_parsing(char **test_line_map, t_info *info);
+void 				c_value(char **array2d, t_info *info);
+void 				f_value(char **array2d, t_info *info);
 #endif

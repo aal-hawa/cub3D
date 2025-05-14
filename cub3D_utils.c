@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:39:44 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/10 15:07:30 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/14 18:30:14 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ void	init_info(t_info *info)
 	info->is_bonus = 0;
 	info->i_enemy = 0;
 	info->ofset = 0;
+	info->number_of_elemnts = 0;
+	info->east_path = NULL;
+	info->west_path = NULL;
+	info->north_path = NULL;
+	info->south_path = NULL;
+	info->floor_color.r = -2;
+	info->ceiling_color.r = -2;
 }
 
 void	flood(char **tab, t_point size, t_point cur, char to_flood)
