@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:07:27 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/15 14:56:39 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:51:31 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,10 @@ char	**add_in_array2d(char ***array2d, char *add_str)
 		return (NULL);
 	while (*array2d && array2d[0][i])
 	{
-			new_array2d[j++] = ft_strdup(array2d[0][i++]);
+		new_array2d[j++] = ft_strdup(array2d[0][i++]);
 	}
-	if (!*array2d)
-		new_array2d[j++] = ft_strdup(add_str);
+	new_array2d[j++] = ft_strdup(add_str);
 	new_array2d[j] = NULL;
-	free_array2d(array2d, len - 1);
+	free_array2d(array2d, 0);
 	return (new_array2d);
 }

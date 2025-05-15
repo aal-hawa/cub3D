@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 15:07:00 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/15 14:57:06 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:41:22 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "mlx_mac/mlx.h"
 # include <stdlib.h>
+# include <stdio.h>
 # include <unistd.h>
 // # include <errno.h>
 # include <fcntl.h>

@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:16:56 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/14 18:49:33 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:33:45 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,6 @@ void	map_pars_main(int fd, t_info *info)
 		test_line_map = free_char(test_line_map);
 		test_line_map = NULL;
 	}
+
 	after_get_lines(fd, info);
 }

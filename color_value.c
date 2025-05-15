@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 18:50:17 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/15 14:54:54 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:53:02 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,15 @@ char	**array2d_colors(char **array2d)
 	int		j;
 	
 	i = 1;
+	new_array2d = NULL;
 	while(array2d[i])
 	{
 		j = 0;
 		array2d_split = ft_split(array2d[i], ',');
-		while(array2d_split[j])
+		
+		while(array2d_split && array2d_split[j])
 		{
-			new_array2d = add_in_array2d(&new_array2d,array2d_split[j]);
+			new_array2d = add_in_array2d(&new_array2d, array2d_split[j]);
 			j++;
 		}
 		i++;
@@ -54,8 +56,9 @@ void f_value(char **array2d, t_info *info)
 		exitmassege("You have filled it out before.\n",	info);
 		return ;
 	}
-	if (ft_array2d_len(new_array2d) != 4)
+	if (ft_array2d_len(new_array2d) != 3)
 	{
+		printf("ft_array2d_len: %d\n", ft_array2d_len(new_array2d));
 		exitmassege("three numbers only(r, g, b).\n",	info);
 		return ;
 	}
@@ -66,7 +69,6 @@ void f_value(char **array2d, t_info *info)
 		exitmassege("invalid number, it is must between 0-255\n",
 					info);
 	info->number_of_elemnts++;
-	
 }
 void c_value(char **array2d, t_info *info)
 {
@@ -78,9 +80,9 @@ void c_value(char **array2d, t_info *info)
 		info->is_hv_err = 1;
 		return ;
 	}
-	if (ft_array2d_len(new_array2d) != 4)
+	if (ft_array2d_len(new_array2d) != 3)
 	{
-		info->is_hv_err = 1;
+		exitmassege("three numbers only(r, g, b).\n",	info);
 		return ;
 	}
 	info->ceiling_color.r  = is_valid_color(new_array2d[0]);
