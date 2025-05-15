@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 15:07:00 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/15 15:41:22 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/15 19:38:42 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct s_info
 	int				y_plr;
 	char			facing_plr;
 	void			*img_plr;
-	char			map[100][100];
+	char			**map;
 	void			*img_wl;
 	void			*img_wlk;
 	void			*img_collc;

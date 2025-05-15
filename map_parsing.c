@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:16:56 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/15 15:33:45 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/15 20:04:07 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ void	surrounded_map(char *test_line_map, t_info *info)
 void	after_get_lines(int fd, t_info *info)
 {
 	check_after_parse(info);
-	if (info->is_hv_err != 1)
-	{
-		can_get_it(info, 't');
-		can_get_it(info, 's');
-		can_get_it(info, 'z');
-	}
+	// if (info->is_hv_err != 1)
+	// {
+	// 	can_get_it(info, 't');
+	// 	can_get_it(info, 's');
+	// 	can_get_it(info, 'z');
+	// }
 	close(fd);
 	if (info->is_hv_err == 1)
 		exit(1);
@@ -74,20 +74,62 @@ void	ft_strcpy(char *dst, const char *src)
 		dst[i] = '\0';
 	}
 }
-void	replace_spaces2one(char **test_line_map)
+void	replace_spaces2one(t_info *info)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	while(test_line_map[0][i])
+	while(info->map[i])
 	{
-		if (test_line_map[0][i] == ' ')
-			test_line_map[0][i] = '1';
+		j = 0;
+		while (info->map[i][j])
+		{
+			if (info->map[i][j] == ' ')
+				info->map[i][j] = '1';
+			j++;
+		}
 		i++;
 	}
 }
 
-
+int	check_spaces_allowed(t_info *info)
+{
+	int	i;
+	int	j;
+	int	previous_len_x;
+	int	next_len_x;
+	
+	i = 0;
+	previous_len_x = ft_strlen(info->map[i]) - 1;
+	while (info->map[i])
+	{
+		j = 0;
+		while (info->map[i][j])
+		{
+			if (info->map[i][j] == ' ')
+			{
+				if (!(info->map[i][j + 1] == ' ' || info->map[i][j + 1] == '1'))
+					return (1);
+				if (!(info->map[i][j - 1] == ' ' || info->map[i][j - 1] == '1'))
+					return (1);
+				if (previous_len_x >= j && !(info->map[i - 1][j] == ' ' || info->map[i - 1][j] == '1'))
+					return (1);
+				if (info->map[i + 1])
+				{
+					next_len_x = ft_strlen(info->map[i + 1]) - 1;
+					if (next_len_x >= j && !(info->map[i + 1][j] == ' ' || info->map[i + 1][j] == '1'))
+						return (1);
+				}
+			
+			}
+			j++;
+		}
+		previous_len_x = ft_strlen(info->map[i]) - 1;
+		i++;
+	}
+	return (0);
+}
 
 void	map_pars_main(int fd, t_info *info)
 {
@@ -102,8 +144,10 @@ void	map_pars_main(int fd, t_info *info)
 			header_parsing(&test_line_map, info);
 		else if (info->is_hv_err != 1)
 		{
-			replace_spaces2one(&test_line_map);
-			ft_strcpy(info->map[info->y_lngth_mp], test_line_map);
+			if (info->x_lngth_mp == -1 && !test_line_map[0])
+				continue ;
+			info->map =	add_in_array2d(&info->map, test_line_map);
+			// ft_strcpy(info->map[info->y_lngth_mp], test_line_map);
 			info->y_lngth_mp++;
 			if (info->y_lngth_mp > 27)
 				exitmassege("The Length Of (y) It Must Less Or Equal 27\n",
@@ -116,6 +160,23 @@ void	map_pars_main(int fd, t_info *info)
 		test_line_map = free_char(test_line_map);
 		test_line_map = NULL;
 	}
-
+	if (info->number_of_elemnts < 6)
+	{
+		exitmassege("header data not compleaed\n", info);
+		return ;
+	}
+	if (!info->map)
+	{
+		exitmassege("No map data\n", info);
+		return ;
+	}
+	
+	 if (check_spaces_allowed(info) == 1)
+	 {
+		exitmassege("spaces not allowed in this way\n",
+					info);
+		return ;
+	 }
+	replace_spaces2one(info);
 	after_get_lines(fd, info);
 }

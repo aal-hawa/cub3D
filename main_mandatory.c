@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:22:48 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/15 15:53:24 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/15 19:43:32 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int ac, char **arg)
 	fd = open_map_fd(arg[1], &info);
 
 	map_pars_main(fd, &info);
-
+	return (0);
 	info.mlx = mlx_init();
 	info.win = mlx_new_window(info.mlx, info.sz * info.x_lngth_mp, info.sz
 			* info.y_lngth_mp, "CUB3D");

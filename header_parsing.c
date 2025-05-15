@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 18:49:13 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/15 15:53:46 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/15 18:21:38 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	header_parsing(char **test_line_map, t_info *info)
 			f_value(array2d, info);
 		else if (!ft_strcmp(array2d[0], "C"))
 			c_value(array2d, info);
-		else
+		else if (array2d[0])
 			exitmassege("is not a valid identifier in header\n",
 					info);
 	}

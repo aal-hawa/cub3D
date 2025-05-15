@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 19:07:17 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/10 15:43:01 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/15 19:59:21 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	after_can_get_it(t_info *info, char to_flood, char **map,
 			i = 0;
 			while (i < info->x_lngth_mp)
 			{
-				if ((map[j][i] == 'E' && to_flood == 't') || map[j][i] == 'C')
+				if ((map[j][i] == 'E' && to_flood == '1') || map[j][i] == 'C')
 					exitmassege("Invalid Map\n", info);
 				if (info->is_hv_err == 1)
 					break ;
@@ -97,9 +97,9 @@ void	can_get_it(t_info *info, char to_flood)
 
 void	chars_data_map(char c, int x, t_info *info)
 {
-	if (!(c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W' || (c == 'W'
+	if (!(c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == ' ' || (c == 'W'
 				&& info->is_bonus == 1)))
-		exitmassege("\n", info);
+		exitmassege("invalid input in the map\n", info);
 	// if (c == 'E')
 	// {
 	// 	if (info->is_hv_ext == 1)
@@ -126,14 +126,16 @@ void	data_map(char *test_line_map, t_info *info)
 	x = 0;
 	if (info->is_hv_err == 1)
 		return ;
-	if (ft_strlen(test_line_map) != info->x_lngth_mp
-		|| ft_strlen(test_line_map) == 0)
-	{
-		if (ft_strlen(test_line_map) == 0)
+	// if (ft_strlen(test_line_map) != info->x_lngth_mp
+	// 	|| ft_strlen(test_line_map) == 0)
+	// {
+	// 	if (ft_strlen(test_line_map) == 0)
+	// 		exitmassege("It Must Not Empety\n", info);
+	// 	else
+	// 		exitmassege("It Must Rectangular\n", info);
+	// }
+	if (ft_strlen(test_line_map) == 0)
 			exitmassege("It Must Not Empety\n", info);
-		else
-			exitmassege("It Must Rectangular\n", info);
-	}
 	if (ft_strlen(test_line_map) > 51)
 		exitmassege("The Length Of (x) It Must Less Or Equal 52\n", info);
 	if (info->is_hv_err == 1)
