@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 18:50:17 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/15 17:30:14 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/15 17:44:10 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	check_valid_comma(char **array2d, t_info *info)
 	{
 		if (i == 1 && array2d[i][0] == ',')
 		{
-			exitmassege("Error parsing colors format (r,g,b).\n",	info);
+			exitmassege("Error parsing colors format (r,g,b).1\n",	info);
 			return (1);
 		}
 		if (!array2d[i + 1])
@@ -33,7 +33,7 @@ int	check_valid_comma(char **array2d, t_info *info)
 			len = ft_strlen(array2d[i]);
 			if (array2d[i][len - 1] == ',')
 			{
-				exitmassege("Error parsing colors format (r,g,b).\n",	info);
+				exitmassege("Error parsing colors format (r,g,b).2\n",	info);
 				return (1);
 			}
 		}
@@ -42,9 +42,9 @@ int	check_valid_comma(char **array2d, t_info *info)
 		{
 			if (array2d[i][j] == ',')
 			{
-				if ((array2d[i][j + 1] && array2d[i][j + 1] == ',') || (array2d[i + 1][0] && array2d[i + 1][0] == ',') )
+				if ((array2d[i][j + 1] && array2d[i][j + 1] == ',') || (!array2d[i][j + 1] && array2d[i + 1] && array2d[i + 1][0] && array2d[i + 1][0] == ',') )
 				{
-					exitmassege("Error parsing colors format (r,g,b).\n",	info);
+					exitmassege("Error parsing colors format (r,g,b).3\n",	info);
 					return (1);
 				}
 			}
