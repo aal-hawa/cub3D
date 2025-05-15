@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 15:07:00 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/14 18:51:48 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/15 14:57:06 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,4 +118,13 @@ int					ft_atoi(const char *str);
 void				header_parsing(char **test_line_map, t_info *info);
 void 				c_value(char **array2d, t_info *info);
 void 				f_value(char **array2d, t_info *info);
+char				*ft_strccpy(char *str, char to_char);
+int					ft_strcmp(const char *s1, const char *s2);
+int					ft_strccmp(const char *s1, const char *s2, char c);
+char				*ft_restore_value(char **dest, char **str, int is_str_malloc);
+char				*join_with_restore(char **dst, char *s1, char *s2, char *s3);
+char				**add_in_array2d(char ***array2d, char *add_str);
+void				free_array2d(char ***dst, size_t i);
+int					len_array2d(char **array2d);
+
 #endif
