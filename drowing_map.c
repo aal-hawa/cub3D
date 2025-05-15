@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 17:58:05 by aal-hawa          #+#    #+#             */
-/*   Updated: 2024/10/20 13:56:34 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/15 20:08:06 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,33 @@ void	init_imgs_bonus(t_info *info, int s)
 		exitmassege("Something Happend Wrong With enemy\n", info);
 }
 
+// void	init_imgs(t_info *info)
+// {
+// 	int	s;
+
+// 	s = info->sz;
+// 	info->img_wl = mlx_xpm_file_to_image(info->mlx, "xpms/wall.xpm", &s, &s);
+// 	if (info->img_wl == NULL)
+// 		exitmassege("Something Happend Wrong With wall.xpm\n", info);
+// 	info->img_wlk = mlx_xpm_file_to_image(info->mlx, "xpms/walk.xpm", &s, &s);
+// 	if (info->img_wlk == NULL)
+// 		exitmassege("Something Happend Wrong With walk.xpm\n", info);
+// 	info->img_plr = mlx_xpm_file_to_image(info->mlx, "xpms/player.xpm", &s, &s);
+// 	if (info->img_plr == NULL)
+// 		exitmassege("Something Happend Wrong With player.xpm\n", info);
+// 	info->img_ext = mlx_xpm_file_to_image(info->mlx, "xpms/exit.xpm", &s, &s);
+// 	if (info->img_ext == NULL)
+// 		exitmassege("Something Happend Wrong With exit.xpm\n", info);
+// 	info->img_collc = mlx_xpm_file_to_image(info->mlx, "xpms/collc.xpm", &s,
+// 			&s);
+// 	if (info->img_collc == NULL)
+// 		exitmassege("Something Happend Wrong With collc.xpm\n", info);
+// 	if (info->is_bonus == 1)
+// 		init_imgs_bonus(info, s);
+// 	if (info->is_hv_err == 1)
+// 		close_win(info);
+// }
+
 void	init_imgs(t_info *info)
 {
 	int	s;
@@ -45,9 +72,12 @@ void	init_imgs(t_info *info)
 	info->img_wl = mlx_xpm_file_to_image(info->mlx, "xpms/wall.xpm", &s, &s);
 	if (info->img_wl == NULL)
 		exitmassege("Something Happend Wrong With wall.xpm\n", info);
+		
 	info->img_wlk = mlx_xpm_file_to_image(info->mlx, "xpms/walk.xpm", &s, &s);
 	if (info->img_wlk == NULL)
 		exitmassege("Something Happend Wrong With walk.xpm\n", info);
+
+		
 	info->img_plr = mlx_xpm_file_to_image(info->mlx, "xpms/player.xpm", &s, &s);
 	if (info->img_plr == NULL)
 		exitmassege("Something Happend Wrong With player.xpm\n", info);

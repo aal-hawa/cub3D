@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 18:50:17 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/15 17:44:10 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/15 21:18:22 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ int	check_valid_comma(char **array2d, t_info *info)
 
 	is_have_comma = 0;
 	i = 1;
+	if (!array2d[i])
+	{
+		exitmassege("Error parsing colors format (r,g,b).1\n",	info);
+		return (1);
+	}
 	while (array2d[i])
 	{
 		if (i == 1 && array2d[i][0] == ',')
@@ -93,14 +98,15 @@ void f_value(char **array2d, t_info *info)
 {
 	char	**new_array2d;
 	
-	if (check_valid_comma(array2d, info) == 1)
-		return ;
-	new_array2d = array2d_colors(array2d);
 	if (info->floor_color.r != -2)
 	{
 		exitmassege("You have filled it out before.\n",	info);
 		return ;
 	}
+	if (check_valid_comma(array2d, info) == 1)
+		return ;
+	new_array2d = array2d_colors(array2d);
+	
 	if (ft_array2d_len(new_array2d) != 3)
 	{
 		exitmassege("three numbers only(r, g, b).\n",	info);
@@ -117,15 +123,16 @@ void f_value(char **array2d, t_info *info)
 void c_value(char **array2d, t_info *info)
 {
 	char	**new_array2d;
-
-	if (check_valid_comma(array2d, info) == 1)
-		return ;
-	new_array2d = array2d_colors(array2d);
+	
 	if (info->ceiling_color.r != -2)
 	{
 		exitmassege("You have filled it out before.\n",	info);
 		return ;
 	}
+	if (check_valid_comma(array2d, info) == 1)
+		return ;
+	new_array2d = array2d_colors(array2d);
+	
 	if (ft_array2d_len(new_array2d) != 3)
 	{
 		exitmassege("three numbers only(r, g, b).\n",	info);

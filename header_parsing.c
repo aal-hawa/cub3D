@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 18:49:13 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/15 18:21:38 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/15 21:17:27 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 
 void no_value(char **array2d, t_info *info)
 {
-	if (ft_array2d_len(array2d) != 2)
-	{
-		exitmassege("error number of valus1\n",	info);
-		return ;
-	}
 	if (info->north_path)
 	{
 		exitmassege("You have filled it out before.\n",	info);
 		return ;
 	}
+	if (ft_array2d_len(array2d) != 2)
+	{
+		exitmassege("error number of valus1\n",	info);
+		return ;
+	}
+	
 	info->north_path = ft_strdup(array2d[1]);
 	info->number_of_elemnts++;
 }

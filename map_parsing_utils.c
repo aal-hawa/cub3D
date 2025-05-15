@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 19:07:17 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/15 19:59:21 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/15 20:12:48 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,8 +136,8 @@ void	data_map(char *test_line_map, t_info *info)
 	// }
 	if (ft_strlen(test_line_map) == 0)
 			exitmassege("It Must Not Empety\n", info);
-	if (ft_strlen(test_line_map) > 51)
-		exitmassege("The Length Of (x) It Must Less Or Equal 52\n", info);
+	// if (ft_strlen(test_line_map) > 51)
+	// 	exitmassege("The Length Of (x) It Must Less Or Equal 52\n", info);
 	if (info->is_hv_err == 1)
 		return ;
 	while (*test_line_map)

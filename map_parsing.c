@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:16:56 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/15 20:04:07 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/15 21:19:00 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ void	surrounded_map(char *test_line_map, t_info *info)
 	{
 		while (test_line_map[i])
 		{
-			if (test_line_map[i] != '1')
+			if (!(test_line_map[i] == '1' || test_line_map[i] == ' '))
 				exitmassege("You Must Arround The Map By Walls\n", info);
 			i++;
 		}
 		info->is_f_m_l++;
 	}
-	if (test_line_map[0] != '1')
+	if (!(test_line_map[0] == '1' || test_line_map[0] == ' '))
 		exitmassege("You Must Arround The Map By Walls\n", info);
-	if (test_line_map[ft_strlen(test_line_map) - 1] != '1')
+	if (!(test_line_map[ft_strlen(test_line_map) - 1] == '1' || test_line_map[ft_strlen(test_line_map) - 1] == ' '))
 		exitmassege("You Must Arround The Map By Walls\n", info);
 }
 
@@ -109,16 +109,16 @@ int	check_spaces_allowed(t_info *info)
 		{
 			if (info->map[i][j] == ' ')
 			{
-				if (!(info->map[i][j + 1] == ' ' || info->map[i][j + 1] == '1'))
+				if (info->map[i][j + 1] && !(info->map[i][j + 1] == ' ' || info->map[i][j + 1] == '1'))
 					return (1);
-				if (!(info->map[i][j - 1] == ' ' || info->map[i][j - 1] == '1'))
+				if (j > 0 && !(info->map[i][j - 1] == ' ' || info->map[i][j - 1] == '1'))
 					return (1);
-				if (previous_len_x >= j && !(info->map[i - 1][j] == ' ' || info->map[i - 1][j] == '1'))
+				if (i > 0 && previous_len_x >= j && !(info->map[i - 1][j] == ' ' || info->map[i - 1][j] == '1'))
 					return (1);
 				if (info->map[i + 1])
 				{
 					next_len_x = ft_strlen(info->map[i + 1]) - 1;
-					if (next_len_x >= j && !(info->map[i + 1][j] == ' ' || info->map[i + 1][j] == '1'))
+					if (next_len_x >= j && info->map[i + 1] && !(info->map[i + 1][j] == ' ' || info->map[i + 1][j] == '1'))
 						return (1);
 				}
 			
@@ -149,9 +149,9 @@ void	map_pars_main(int fd, t_info *info)
 			info->map =	add_in_array2d(&info->map, test_line_map);
 			// ft_strcpy(info->map[info->y_lngth_mp], test_line_map);
 			info->y_lngth_mp++;
-			if (info->y_lngth_mp > 27)
-				exitmassege("The Length Of (y) It Must Less Or Equal 27\n",
-					info);
+			// if (info->y_lngth_mp > 27)
+			// 	exitmassege("The Length Of (y) It Must Less Or Equal 27\n",
+			// 		info);
 			if (info->x_lngth_mp == -1)
 				info->x_lngth_mp = ft_strlen(test_line_map);
 			data_map(test_line_map, info);
