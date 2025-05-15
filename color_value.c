@@ -6,11 +6,54 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 18:50:17 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/15 15:53:02 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/15 17:30:14 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+int	check_valid_comma(char **array2d, t_info *info)
+{
+	int	i;
+	int	j;
+	int	len;
+	int	is_have_comma;
+
+	is_have_comma = 0;
+	i = 1;
+	while (array2d[i])
+	{
+		if (i == 1 && array2d[i][0] == ',')
+		{
+			exitmassege("Error parsing colors format (r,g,b).\n",	info);
+			return (1);
+		}
+		if (!array2d[i + 1])
+		{
+			len = ft_strlen(array2d[i]);
+			if (array2d[i][len - 1] == ',')
+			{
+				exitmassege("Error parsing colors format (r,g,b).\n",	info);
+				return (1);
+			}
+		}
+		j = 0;
+		while (array2d[i][j])
+		{
+			if (array2d[i][j] == ',')
+			{
+				if ((array2d[i][j + 1] && array2d[i][j + 1] == ',') || (array2d[i + 1][0] && array2d[i + 1][0] == ',') )
+				{
+					exitmassege("Error parsing colors format (r,g,b).\n",	info);
+					return (1);
+				}
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
 
 char	**array2d_colors(char **array2d)
 {
@@ -50,6 +93,8 @@ void f_value(char **array2d, t_info *info)
 {
 	char	**new_array2d;
 	
+	if (check_valid_comma(array2d, info) == 1)
+		return ;
 	new_array2d = array2d_colors(array2d);
 	if (info->floor_color.r != -2)
 	{
@@ -58,7 +103,6 @@ void f_value(char **array2d, t_info *info)
 	}
 	if (ft_array2d_len(new_array2d) != 3)
 	{
-		printf("ft_array2d_len: %d\n", ft_array2d_len(new_array2d));
 		exitmassege("three numbers only(r, g, b).\n",	info);
 		return ;
 	}
@@ -73,11 +117,13 @@ void f_value(char **array2d, t_info *info)
 void c_value(char **array2d, t_info *info)
 {
 	char	**new_array2d;
-	
+
+	if (check_valid_comma(array2d, info) == 1)
+		return ;
 	new_array2d = array2d_colors(array2d);
 	if (info->ceiling_color.r != -2)
 	{
-		info->is_hv_err = 1;
+		exitmassege("You have filled it out before.\n",	info);
 		return ;
 	}
 	if (ft_array2d_len(new_array2d) != 3)
