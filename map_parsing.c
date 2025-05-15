@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:16:56 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/15 21:19:00 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/15 22:06:52 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,38 @@ void	replace_spaces2one(t_info *info)
 		i++;
 	}
 }
+int	check_zero_player_allowed(t_info *info)
+{
+	int	i;
+	int	j;
+	int	previous_len_x;
+	int	next_len_x;
+	
+	i = 0;
+	while (info->map[i])
+	{
+		j = 0;
+		previous_len_x = -1;
+		next_len_x = -1;
+		if (i > 0)
+			previous_len_x = ft_strlen(info->map[i - 1]) - 1;
+		if (info->map[i + 1])
+			next_len_x = ft_strlen(info->map[i + 1]) - 1;
+		while (info->map[i][j])
+		{
+			if (info->map[i][j] == '0' ||  info->map[i][j] == 'N' || info->map[i][j] == 'S' || info->map[i][j] == 'E' || info->map[i][j] == 'W')
+			{
+				if (previous_len_x < j)
+					return (1);
+				if (next_len_x < j)
+					return (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
 
 int	check_spaces_allowed(t_info *info)
 {
@@ -171,12 +203,16 @@ void	map_pars_main(int fd, t_info *info)
 		return ;
 	}
 	
-	 if (check_spaces_allowed(info) == 1)
-	 {
-		exitmassege("spaces not allowed in this way\n",
-					info);
+	if (check_zero_player_allowed(info) == 1)
+	{
+		exitmassege("invalid map data\n", info);
 		return ;
-	 }
+	}
+	if (check_spaces_allowed(info) == 1)
+	{
+		exitmassege("spaces not allowed in this way\n",	info);
+		return ;
+	}
 	replace_spaces2one(info);
 	after_get_lines(fd, info);
 }
