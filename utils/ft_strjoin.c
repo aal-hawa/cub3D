@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_mandatory.c                                   :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 17:22:48 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/16 19:04:34 by aal-hawa         ###   ########.fr       */
+/*   Created: 2025/05/16 17:49:24 by aal-hawa          #+#    #+#             */
+/*   Updated: 2025/05/16 19:34:14 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../cub3D.h"
 
-int	main(int ac, char **arg)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	t_info	info;
-	int		fd;
+	size_t	len;
+	char	*dst;
+	size_t	i;
+	size_t	j;
 
-	init_info(&info);
-	if (ac != 2)
-	{
-		exitmassege("You Must Have One Map (chose_name.ber)\n", &info);
-		exit(1);
-	}
-	fd = open_map_fd(arg[1], &info);
-	map_pars_main(fd, &info);
-	if (info.is_hv_err == 1)
-	{
-		free_info(&info);
-		return (1);
-	}
-	free_info(&info);
-	return (0);
+	if (!s1 || !s2)
+		return (NULL);
+	len = ft_strlen(s1) + ft_strlen(s2);
+	dst = (char *)malloc(sizeof(char) * (len + 1));
+	i = 0;
+	j = 0;
+	if (!dst)
+		return (NULL);
+	while (s1[i])
+		dst[j++] = s1[i++];
+	i = 0;
+	while (s2[i])
+		dst[j++] = s2[i++];
+	dst[j] = '\0';
+	free_string(s1);
+	return (dst);
 }

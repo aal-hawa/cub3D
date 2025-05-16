@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_mandatory.c                                   :+:      :+:    :+:   */
+/*   free_string.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 17:22:48 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/16 19:04:34 by aal-hawa         ###   ########.fr       */
+/*   Created: 2025/05/16 17:46:35 by aal-hawa          #+#    #+#             */
+/*   Updated: 2025/05/16 17:46:43 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../cub3D.h"
 
-int	main(int ac, char **arg)
+char	*free_string(char *this_string)
 {
-	t_info	info;
-	int		fd;
-
-	init_info(&info);
-	if (ac != 2)
-	{
-		exitmassege("You Must Have One Map (chose_name.ber)\n", &info);
-		exit(1);
-	}
-	fd = open_map_fd(arg[1], &info);
-	map_pars_main(fd, &info);
-	if (info.is_hv_err == 1)
-	{
-		free_info(&info);
-		return (1);
-	}
-	free_info(&info);
-	return (0);
+	if (!this_string)
+		return (NULL);
+	free(this_string);
+	this_string = NULL;
+	return (NULL);
 }

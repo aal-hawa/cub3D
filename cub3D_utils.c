@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:39:44 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/15 19:39:15 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/16 19:34:46 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,14 @@ void	exitmassege(char *error, t_info *info)
 {
 	if (info->is_hv_err == 1)
 		return ;
-	ft_putstr_fd("Error\n", 1, 0);
-	ft_putstr_fd(error, 1, 0);
+	printf("Error\n");
+	printf("%s", error);
 	info->is_hv_err = 1;
 }
 
 void	init_info(t_info *info)
 {
 	info->is_hv_plr = 0;
-	info->is_hv_ext = 0;
-	info->cnt_collc = 0;
 	info->is_arnd_wall = 0;
 	info->x_lngth_mp = -1;
 	info->y_lngth_mp = 0;
@@ -33,8 +31,6 @@ void	init_info(t_info *info)
 	info->sz = 50;
 	info->is_hv_err = 0;
 	info->steps = 0;
-	info->is_bonus = 0;
-	info->i_enemy = 0;
 	info->ofset = 0;
 	info->number_of_elemnts = 0;
 	info->map = NULL;
@@ -46,28 +42,22 @@ void	init_info(t_info *info)
 	info->ceiling_color.r = -2;
 }
 
-void	flood(char **tab, t_point size, t_point cur, char to_flood)
+void	free_info(t_info *info)
 {
-	if (cur.x < 0 || cur.y < 0 || cur.x >= size.x || cur.y >= size.y
-		|| tab[cur.y][cur.x] == to_flood || tab[cur.y][cur.x] == '1'
-		|| (tab[cur.y][cur.x] == 'E' && to_flood == 's')
-		|| (tab[cur.y][cur.x] == 'e' && to_flood == 'z'))
-		return ;
-	tab[cur.y][cur.x] = to_flood;
-	flood(tab, size, (t_point){cur.x + 1, cur.y}, to_flood);
-	flood(tab, size, (t_point){cur.x - 1, cur.y}, to_flood);
-	flood(tab, size, (t_point){cur.x, cur.y - 1}, to_flood);
-	flood(tab, size, (t_point){cur.x, cur.y + 1}, to_flood);
+	if (info->map)
+		free_array2d(&info->map);
+	if (info->east_path)
+		info->east_path = free_string(info->east_path);
+	if (info->west_path)
+		info->west_path = free_string(info->west_path);
+	if (info->north_path)
+		info->north_path = free_string(info->north_path);
+	if (info->south_path)
+		info->south_path = free_string(info->south_path);
 }
 
-void	flood_fill(char **tab, t_point size, t_point begin, char to_flood)
+void	check_extension(char *name_map, t_info *info)
 {
-	flood(tab, size, begin, to_flood);
-}
-
-int	open_map_fd(char *name_map, t_info *info)
-{
-	int		fd;
 	char	*comp;
 	int		i;
 	int		ln;
@@ -85,6 +75,13 @@ int	open_map_fd(char *name_map, t_info *info)
 	}
 	if (i != 0 || name_map[ln - i])
 		exitmassege("Error ending map file extension (.cub)\n", info);
+}
+
+int	open_map_fd(char *name_map, t_info *info)
+{
+	int	fd;
+
+	check_extension(name_map, info);
 	if (info->is_hv_err == 1)
 		exit(1);
 	fd = open(name_map, O_RDONLY);

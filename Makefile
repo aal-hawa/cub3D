@@ -1,42 +1,33 @@
 NAME = cub3D
-NAME_BONUS = cub3D_bonus
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-MLX_DIR = mlx_mac
-MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+# MLX_DIR = mlx_mac
+# MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 SRC_MANDATORY = main_mandatory.c 
-SRC_BONUS = main_bonus.c 
 
-MLX = $(MLX_DIR)/libmlx.a
-SRC = map_parsing.c controller.c drowing_map.c \
-	libft_func.c ft_split.c get_next_line.c  print.c drowing_map_utils.c \
-	map_parsing_utils.c cub3D_utils.c moving.c header_parsing.c color_value.c \
-	free_array2d.c ft_restore_value.c ft_strcmp.c ft_strccpy.c 
+# MLX = $(MLX_DIR)/libmlx.a
+SRC = parsing/map_parsing.c parsing/check_allowed_player_zero.c parsing/path_identifier.c parsing/check_valid_comma_colors.c \
+	parsing/map_parsing_utils.c parsing/header_parsing.c parsing/color_value.c parsing/check_allowed_spaces.c \
+	utils/ft_atoi_modified.c utils/ft_split.c utils/get_next_line.c utils/get_next_line_utils.c utils/ft_strlcpy.c \
+	utils/array_utils.c utils/free_string.c utils/ft_strcmp.c utils/ft_strdup.c utils/ft_strjoin.c utils/ft_strlen.c \
+	cub3D_utils.c
 
 OBJS = $(SRC:.c=.o)
 OBJS_MANDATORY = $(SRC_MANDATORY:.c=.o)
-OBJS_BONUS = $(SRC_BONUS:.c=.o)
+# OBJS_BONUS = $(SRC_BONUS:.c=.o)
 all: $(NAME)
 
-$(MLX):
-		make -C $(MLX_DIR)
+# $(MLX):
+# 		make -C $(MLX_DIR)
 
-$(NAME): $(OBJS) $(OBJS_MANDATORY) $(MLX)
-		$(CC) $(MLX_FLAGS) $(OBJS) $(OBJS_MANDATORY) -o $(NAME)
-
-$(NAME_BONUS): $(OBJS) $(OBJS_BONUS) $(MLX)
-		$(CC) $(MLX_FLAGS) $(OBJS) $(OBJS_BONUS) -o $(NAME_BONUS)
+$(NAME): $(OBJS) $(OBJS_MANDATORY)
+		$(CC) $(OBJS) $(OBJS_MANDATORY) -o $(NAME)
 
 %.o: %.c 
 	$(CC) $(CFLAGS)  -c $< -o $@
 
-bonus: $(NAME_BONUS) 
-
-clean_mlx:
-	make clean -C $(MLX_DIR)
-
-clean: clean_mlx
+clean:
 	rm -f $(OBJS) $(OBJS_MANDATORY) $(OBJS_BONUS)
 
 
@@ -45,4 +36,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus 
+.PHONY: all clean fclean re 
