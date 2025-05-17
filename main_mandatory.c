@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:22:48 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/16 19:04:34 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/17 14:17:37 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,18 @@ int	main(int ac, char **arg)
 	}
 	fd = open_map_fd(arg[1], &info);
 	map_pars_main(fd, &info);
+	// Exit the program if there is an issue
 	if (info.is_hv_err == 1)
 	{
 		free_info(&info);
 		return (1);
 	}
+	// Finish parsing without any issues....
+	// Drawing
+	// Moving
+
+	
+	// Free the data inside the 'info' struct before finishing the program
 	free_info(&info);
 	return (0);
 }
