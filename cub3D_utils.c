@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:39:44 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/16 19:34:46 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/18 19:34:13 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	init_info(t_info *info)
 	info->is_hv_err = 0;
 	info->steps = 0;
 	info->ofset = 0;
+	info->fd = -2;
 	info->number_of_elemnts = 0;
 	info->map = NULL;
 	info->east_path = NULL;
@@ -83,8 +84,13 @@ int	open_map_fd(char *name_map, t_info *info)
 
 	check_extension(name_map, info);
 	if (info->is_hv_err == 1)
+	{
+		if (info->fd > 0)
+			close (info->fd);
 		exit(1);
+	}
 	fd = open(name_map, O_RDONLY);
+	info->fd = fd;
 	if (fd == -1)
 	{
 		exitmassege("Error File Open\n", info);

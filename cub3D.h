@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 15:07:00 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/16 20:33:04 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/18 19:32:07 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_info
 	void		*img_wl;
 	void		*img_wlk;
 	int			is_hv_err;
+	int			fd;
 	int			steps;
 	int			ofset;
 	int			is_plus;

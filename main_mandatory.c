@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:22:48 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/17 14:17:37 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/18 20:52:39 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	main(int ac, char **arg)
 	// Exit the program if there is an issue
 	if (info.is_hv_err == 1)
 	{
+		if (info.fd > 0)
+			close(info.fd);
 		free_info(&info);
 		return (1);
 	}

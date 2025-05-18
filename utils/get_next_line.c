@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:29:02 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/16 17:49:21 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/18 20:50:52 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,12 @@ char	*get_next_line(int fd, t_info *info)
 
 	if (fd < 0)
 		return (NULL);
+	if (info->is_hv_err == 1)
+	{
+		if (text_buffer)
+			text_buffer = free_string(text_buffer);
+		return (NULL);
+	}
 	if (!text_buffer)
 	{
 		text_buffer = malloc(sizeof(char) * (2));

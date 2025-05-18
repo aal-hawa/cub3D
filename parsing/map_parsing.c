@@ -6,7 +6,7 @@
 /*   By: aal-hawa <aal-hawa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:16:56 by aal-hawa          #+#    #+#             */
-/*   Updated: 2025/05/16 20:23:30 by aal-hawa         ###   ########.fr       */
+/*   Updated: 2025/05/18 20:52:58 by aal-hawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	replace_spaces2one(t_info *info)
 
 void	after_get_map(t_info *info)
 {
+	if (info->is_hv_err == 1)
+		return ;
 	if (info->is_hv_plr == 0)
 		exitmassege("You Must Have A Player\n", info);
 	if (check_zero_player_allowed(info) == 1)
@@ -116,4 +118,5 @@ void	map_pars_main(int fd, t_info *info)
 	}
 	after_get_map(info);
 	close(fd);
+	info->fd = -2;
 }
